@@ -1,5 +1,3 @@
-# School_projects
-
 ### PSU
 
 
