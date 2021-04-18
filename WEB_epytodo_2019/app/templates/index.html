@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Gerer votre timing">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/index.js" defer></script>
+    <title>EpyTodo</title>
+</head>
+
+<body>
+    <div class="modal" tabindex="-1" role="dialog" id="signin-modal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+            <form id="signin-form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Se connecter</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <label for="user" style="font-weight: bold">User : </br></label>
+                            <input required="required" type="text" id="user" name="user">
+                        </div>
+                        <div>
+                            <label for="mdp" style="font-weight: bold">Mot de passe : </br></label>
+                            <input required="required" type="password" id="mdp" name="mdp">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            Se connecter
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="alternate()">
+                            Je veux m'inscrire
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id="signup-modal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+            <form id="signup-form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">S'inscrire</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <label for="user" style="font-weight: bold">User : </br></label>
+                            <input required="required" type="text" id="user" name="user">
+                        </div>
+                        <div>
+                            <label for="mdp" style="font-weight: bold">Mot de passe : </br></label>
+                            <input required="required" type="password" id="mdp" name="mdp">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            S'inscrire
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="alternate()">
+                            Je veux me connecter
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
+</body>
+
+</html>

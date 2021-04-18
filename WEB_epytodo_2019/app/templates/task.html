@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Gerer votre timing">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/task.js" defer></script>
+    <title>EpyTodo</title>
+</head>
+
+<body>
+    <input id="statusCode" value="{{ statusCode }}" hidden disabled></input>
+    <!-- Menu -->
+    <h1>EpyTODO</h1>
+    <ul>
+        <li><a href="index.html">Presentation du projet</a></li>
+        <li><a class="active" href="task.html">Mes taches</a></li>
+        <li style="float:right"><button type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#profile">Mon Profile</button></li>
+        <li style="float:right"><button onclick="disconnect()">Se déconnecter</button></li>
+    </ul>
+    <!-- Modal -->
+    <div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="profileLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Begin</th>
+                <th scope="col">End</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task.get('title') }}</td>
+                    <td>{{ task.get('begin') }}</td>
+                    <td>{{ task.get('end') }}</td>
+                    <td>{{ task.get('status') }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        +
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form id="task-form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ajouter une tâche</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <label for="project_name" style="font-weight: bold">Nom : </br></label>
+                            <input required="required" type="text" id="project_name" name="project_name">
+                        </div>
+                        <div>
+                            <label for="start_date" style="font-weight: bold">Date de début : </br></label>
+                            <input required="required" type="datetime-local" step="1" id="start_date" name="start_date">
+                        </div>
+                        <div>
+                            <label for="end_date" style="font-weight: bold">Date de fin : </br></label>
+                            <input required="required" type="datetime-local" step="1" id="end_date" name="end_date">
+                        </div>
+                        <div>
+                            <label for="statut" style="font-weight: bold">Statut : </br></label>
+                            <select id="statut" name="statut">
+                                <option selected disabled>Sélectionnez le statut</option>
+                                <option>Not Started</option>
+                                <option>In Progress</option>
+                                <option>Done</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Ajouter la tâche</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
