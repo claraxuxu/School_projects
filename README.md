@@ -18,7 +18,7 @@
           This programme is able to use "cd", "tree", "ls", "env" as commands.
           And MiniShell2 is able to deal with the semicolons(;), pipes(|) and the redirections(>, <, <<, >>) in a shell.
           I mainly used the "fork" to build a son progress then output the result we get from computer
-          
+          example:![Alt Text](https://github.com/claraxuxu/AI_car_V-rep/blob/master/gif/N4S1.gif)
     42sh:
         Compilation:
                     make
