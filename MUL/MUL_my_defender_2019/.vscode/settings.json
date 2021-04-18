@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "defender.h": "c",
+        "stdbool.h": "c"
+    }
+}
