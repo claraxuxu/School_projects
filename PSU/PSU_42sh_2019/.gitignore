@@ -1,0 +1,17 @@
+# Ignore everything
+*
+
+# Ignore everything that is not a directory
+!*/
+
+# Blacklisted directories
+
+# Whitelisted types
+!*.c
+!*.h
+!Makefile.istl_sources
+!Makefile
+!.gitignore
+
+# Blacklisted files
+include/lib.h
