@@ -11,12 +11,28 @@ PSU
                   ./my_ls -l == cmd "ls -l" in shell
         This project is able to deal with "-l" "-a" etc.
         
-    MiniShell:
+    MiniShell 1&2:
           Compilation:
                       make
                       ./mysh
           This programme is able to use "cd", "tree", "ls", "env" as commands.
-          
+          And MiniShell2 is able to deal with the semicolons(;), pipes(|) and the redirections(>, <, <<, >>) in a shell.
           I mainly used the "fork" to build a son progress then output the result we get from computer
+          
+    42sh:
+        Compilation:
+                    make
+                    ./42sh
+        This is a Unix SHELL.
+        My program could deal with almost all the commands that you usually use in a shell.
+        
+        •spaces and tabs
+        •$PATH and environment,•errors and return value
+        •redirections (‘<’, ‘>’, ‘<<’ and ‘>>’)
+        •pipes (‘|’)
+        •builtins: cd, echo, exit, setenv, unsetenv,•separators: ‘;’, ‘&&’, ‘||’
+        
+        Expemple:. /42sh
+            42sh>  cd ; </etc/hosts od -c | grep xx | wc >> /tmp/z -l ; cd - && echo “OK”
           
           
