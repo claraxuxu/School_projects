@@ -12,7 +12,7 @@
                   ./my_ls -l == cmd "ls -l" in shell
         This project is able to deal with "-l" "-a" etc.
         
-    MiniShell 1&2:
+###### MiniShell 1&2:
           Compilation:
                       make
                       ./mysh
