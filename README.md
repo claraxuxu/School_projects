@@ -40,5 +40,13 @@
         
         Expemple:. /42sh
             42sh>  cd ; </etc/hosts od -c | grep xx | wc >> /tmp/z -l ; cd - && echo “OK”
-          
+    navy:
+        Compilation:
+                    make
+                    ./navy pos1
+                    ./navy [pid of first] pos2
+        This is the Battleship game, play on two terminals, connect with the pid
+        Here is an exemple:
+![Alt Text](https://github.com/claraxuxu/School_projects/blob/master/exemples/navy.png)
+        
           
