@@ -19,7 +19,7 @@
           And MiniShell2 is able to deal with the semicolons(;), pipes(|) and the redirections(>, <, <<, >>) in a shell.
           I mainly used the "fork" to build a son progress then output the result we get from computer
           example:
-          ![Alt Text](https://github.com/claraxuxu/School_projects/blob/master/exemples/minishell1.png)
+  ![Alt Text](https://github.com/claraxuxu/School_projects/blob/master/exemples/minishell1.png)
           
     42sh:
         Compilation:
