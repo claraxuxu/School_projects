@@ -23,7 +23,7 @@ void def_list(char *ptr, mini_t *mini)
         ptr++;
     }
 }
-void cmd_list(char *ptr, mini_t *mini, char **env)
+void cmd_list(char *ptr, mini_t *mini)
 {
     int pid;
 
@@ -52,7 +52,7 @@ void other_cmd(mini_t *mini)
     else if (!my_strcmp(mini->list[0], "unsetenv"))
         get_unsetenv(mini);
 }
-int main(int ac, char **av, char **env)
+int main(UNUSED int ac, UNUSED char **av, char **env)
 {
     char *tmp = NULL;
     char *ptr = NULL;
@@ -69,7 +69,7 @@ int main(int ac, char **av, char **env)
             exit (0);
         }
         ptr = tmp;
-        cmd_list(ptr,&mini,env);
+        cmd_list(ptr,&mini);
         other_cmd(&mini);
     }
     return (0);

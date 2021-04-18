@@ -19,9 +19,12 @@
 #include <dirent.h>
 #include <pwd.h>
 #include <time.h>
+
 #ifndef _MY_H
 #define _MY_H
+
 #define MAX_SIZE 2000
+#define UNUSED __attribute__((unused))
 
 typedef struct mini {
 	char input[2][256];
@@ -45,7 +48,7 @@ void get_setenv(mini_t *mini);
 void get_unsetenv(mini_t *mini);
 int check_input(mini_t *mini);
 void print_prompt();
-char find_in_env(mini_t *mini);
+void find_in_env(mini_t *mini);
 void in_cd(mini_t *mini);
 void def_env(mini_t *mini, char **env);
 int env_cmp(char *str1, char *str2, int len);

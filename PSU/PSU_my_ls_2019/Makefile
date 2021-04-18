@@ -5,6 +5,23 @@
 ## my_ls
 ##
 
+########################
+#####VARIABLES##########
+########################
+
+NAME	=	my_ls
+CC		=	@gcc
+CFLAGS	=   -g3
+OBJ		=	$(wildcard *.o)
+
+RED  	=  	"\e[31;1m"
+GREEN 	= 	"\e[32;1m"
+BLUE  	= 	"\e[34;1m"
+
+########################
+####FILES PATH##########
+########################
+
 SRC	=	./my_ls.c	\
 		./src/my_strcpy.c	\
 		./src/my_putchar.c	\
@@ -31,23 +48,37 @@ SRC	=	./my_ls.c	\
 		./lib/my/situx.c	\
 		./lib/my/situ_x_mas.c	\
 		./lib/my/res_dif_int.c	\
-		./lib/my/get_hex.c
+		./lib/my/get_hex.c	\
+		./lib/my/put_res_part.c
 
-NAME	=	my_ls
+RM		= 	@rm -rf
 
-OBJ	=	$(wildcard *.o)
+########################
+#####COMPILATION########
+########################
 
 all:	$(NAME)
 
 $(NAME):
-	gcc -c -g3 $(SRC) -I./include 
-	gcc -g3 -o $(NAME) *.o -lncurses
+	@$(CC) $(CFLAGS) -c $(SRC) -I./include 
+	@$(CC) $(CFLAGS) -o $(NAME) *.o -lncurses
+	@mkdir objects/
+	@mv *.o objects/
+	@echo -e $(GREEN) "[*** COMPILATION NM SUCCEED ***]"
 
 clean:
-	rm -f *.o
-	rm -f src/*.o
+	@$(RM) $(NAME)
+	@$(RM) objects/
+	@$(RM) *.o
+	@$(RM) src/*.o
 
-re: 	fclean all
+re: fclean all
 
 fclean: clean
-	rm -f $(NAME)
+	@echo -e $(BLUE) "[*** ALL CLEAN ***]"
+
+########################
+#####.PHONY#############
+########################
+
+.PHONY: all clean fclean re
