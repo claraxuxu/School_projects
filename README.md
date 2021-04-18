@@ -3,10 +3,9 @@
 ### PSU
 
 ```diff
-+ my_ls
+    my_ls
 ```
-
-    Compilation:
+        Compilation:
                     make
                     ./my_ls
         How_to_use:
