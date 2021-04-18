@@ -1,6 +1,6 @@
 # School_projects
 
-###PSU
+### PSU
 
     My_ls:
         Compilation:
