@@ -1,0 +1,12 @@
+import Tkinter
+import random
+import time
+
+tk = Tkinter.Tk()
+tk.title("Pong")
+tk.resizable(0,0)
+tl.wm_attributes("-topmost", 1)
+canvas = Tkinter.Canvas(tk, width = 500, height = 400,
+                        bd = 0, highlightthickness = 0)
+canvas.pack()
+tk.update()
