@@ -26,7 +26,7 @@
           example:
   ![Alt Text](https://github.com/claraxuxu/School_projects/blob/master/exemples/minishell1.png)
           
-    42sh:
+###### 42sh:
         Compilation:
                     make
                     ./42sh
@@ -41,7 +41,7 @@
         
         Expemple:. /42sh
             42sh>  cd ; </etc/hosts od -c | grep xx | wc >> /tmp/z -l ; cd - && echo “OK”
-    navy:
+###### navy:
         Compilation:
                     make
                     ./navy pos1
