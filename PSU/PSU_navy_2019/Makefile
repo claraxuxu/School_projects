@@ -5,7 +5,22 @@
 ## navy
 ##
 
+########################
+#####VARIABLES##########
+########################
+
 NAME	=	navy
+CC		=	@gcc
+CFLAGS	=   -g3
+OBJ		=	$(wildcard *.o)
+
+RED  	=  	"\e[31;1m"
+GREEN 	= 	"\e[32;1m"
+BLUE  	= 	"\e[34;1m"
+
+########################
+####FILES PATH##########
+########################
 
 SRC	=	./main.c					\
 		./fonc_base/my_put.c		\
@@ -35,21 +50,34 @@ OUTILS	=	./docs/help_part.c			\
 			./docs/check/check_attack.c	\
 			./docs/check/check_win.c
 
+RM		= 	@rm -rf
 
-
-OBJ	=	$(wildcard *.o)
+########################
+#####COMPILATION########
+########################
 
 all:	$(NAME)
 
 $(NAME):
-		gcc -c -g3 $(SRC) $(OUTILS) $(PRINT) -Iinclude 
-		gcc -g3 -o $(NAME) *.o
+	@$(CC) $(CFLAGS) -c $(SRC) $(OUTILS) $(PRINT) -Iinclude 
+	@$(CC) $(CFLAGS) -o $(NAME) *.o
+	@mkdir objects/
+	@mv *.o objects/
+	@echo -e $(GREEN) "[*** COMPILATION NM SUCCEED ***]"
 
 clean:
-		rm -f *.o
-		rm -f src/*.o
+	@$(RM) $(NAME)
+	@$(RM) objects/
+	@$(RM) *.o
+	@$(RM) src/*.o
 
 re: 	fclean all
 
 fclean: clean
-	rm -f $(NAME)
+	@echo -e $(BLUE) "[*** ALL CLEAN ***]"
+
+########################
+#####.PHONY#############
+########################
+
+.PHONY: all clean fclean re

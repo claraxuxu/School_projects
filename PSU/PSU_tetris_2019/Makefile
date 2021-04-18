@@ -5,6 +5,23 @@
 ## tetris
 ##
 
+########################
+#####VARIABLES##########
+########################
+
+NAME	=	tetris
+CC		=	@gcc
+CFLAGS	=   -g3
+OBJ		=	$(wildcard *.o)
+
+RED  	=  	"\e[31;1m"
+GREEN 	= 	"\e[32;1m"
+BLUE  	= 	"\e[34;1m"
+
+########################
+####FILES PATH##########
+########################
+
 SRC	=	./src/main.c			\
 		./src/my_put.c			\
 		./src/my_strlen.c		\
@@ -56,30 +73,36 @@ SRC_GAME =	./docs/game/prepare_game.c \
 			./docs/game/get_tetri.c \
 			./docs/game/handle_game_event.c
 
-NAME	=	tetris
-
-OBJ		=	$(wildcard *.o)
-
-CC		=	gcc
-
-LDFLAGS	=	-g3
-
 SOURCE	=	$(SRC) $(SRC_CTX) $(SRC_DBG) $(SRC_GRL) $(SRC_GAME)
+
+RM		= 	@rm -rf
+
+########################
+#####COMPILATION########
+########################
 
 all:	$(NAME)
 
 $(NAME):
-	$(CC) -c -lncurses $(LDFLAGS)  $(SOURCE) -Iinclude
-	$(CC) $(LDFLAGS) -lncurses -o $(NAME) *.o
-	mkdir objects
-	mv *.o objects
+	@$(CC) -c -lncurses $(CFLAGS)  $(SOURCE) -Iinclude
+	@$(CC) $(CFLAGS) -lncurses -o $(NAME) *.o
+	@mkdir objects/
+	@mv *.o objects/
+	@echo -e $(GREEN) "[*** COMPILATION NM SUCCEED ***]"
 
 clean:
-	rm -rf objects
-	rm -f *.o
-	rm -f src/*.o
+	@$(RM) $(NAME)
+	@$(RM) objects/
+	@$(RM) *.o
+	@$(RM) src/*.o
 
 re: 	fclean all
 
 fclean: clean
-	rm -f $(NAME)
+	@echo -e $(BLUE) "[*** ALL CLEAN ***]"
+
+########################
+#####.PHONY#############
+########################
+
+.PHONY: all clean fclean re

@@ -5,6 +5,23 @@
 ## my_sokoban
 ##
 
+########################
+#####VARIABLES##########
+########################
+
+NAME	=	my_sokoban
+CC		=	@gcc
+CFLAGS	=   -g3
+OBJ		=	$(wildcard *.o)
+
+RED  	=  	"\e[31;1m"
+GREEN 	= 	"\e[32;1m"
+BLUE  	= 	"\e[34;1m"
+
+########################
+####FILES PATH##########
+########################
+
 SRC	=	./my_sokoban.c	\
 		./SRC/my_putchar.c	\
 		./SRC/my_putstr.c	\
@@ -19,27 +36,34 @@ SRC	=	./my_sokoban.c	\
 		./SRC/direction.c	\
 		./SRC/get_pos.c
 
+RM		= 	@rm -rf
 
-NAME	=	my_sokoban
-
-OBJ	=	$(wildcard *.o)
-
-NAME2	=	libmy.a
-
-OBJ	=	$(SRC:.c=.o)
+########################
+#####COMPILATION########
+########################
 
 all:	$(NAME)
 
 $(NAME):
-	gcc -c -g3 $(SRC) -I./include 
-	gcc -g3 -o $(NAME) *.o -lncurses
+	@$(CC) $(CFLAGS) -c $(SRC) -I./include 
+	@$(CC) $(CFLAGS) -o $(NAME) *.o -lncurses
+	@mkdir objects/
+	@mv *.o objects/
+	@echo -e $(GREEN) "[*** COMPILATION NM SUCCEED ***]"
 
 clean:
-	rm -f *.o
-	rm -f SRC/*.o
+	@$(RM) $(NAME)
+	@$(RM) objects/
+	@$(RM) *.o
+	@$(RM) SRC/*.o
 
 re: 	fclean all
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f $(NAME2)
+	@echo -e $(BLUE) "[*** ALL CLEAN ***]"
+
+########################
+#####.PHONY#############
+########################
+
+.PHONY: all clean fclean re
