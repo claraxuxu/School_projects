@@ -1,0 +1,65 @@
+#!/usr/bin/env python3
+##
+## EPITECH PROJECT, 2020
+## undefined
+## File description:
+## main
+##
+
+from sys import exit, argv
+from math import sqrt, cos, tan
+
+def error():
+    for i in range(1, len(argv)):
+        tab_num = []
+        tab_num = argv[i].split("*")
+        for j in range (len(tab_num)):
+            try:
+                int(tab_num[j])
+            except:
+                help()
+                exit(84)
+        if i % 2 == 0:
+            if len(tab_num) == 1 and int(tab_num[0]) == 0:
+                print ("Denominator cannot be 0 (division by zero)")
+                exit(84)
+
+
+
+def help():
+    print("USAGE\n    ./107transfer [num den]*\nDESCRIPTION\n    num     polynomial numerator defined by its coefficients\n    den     polynomial denominator defined by its coefficients")
+
+def calcul(tab, x):
+    copy_x = 1
+    res = 0
+    for i  in range (len(tab)):
+        res = res + tab[i]*copy_x
+        copy_x = copy_x * x
+    return (res)
+
+def transfer():
+
+    list_num = []
+    for i in range (1 , len(argv)):
+        list_tmp = []
+
+        num = argv[i].split("*")
+        for j in range (0, len(num)):
+            list_tmp.append(int(num[j]))
+        list_num.append(list_tmp)
+    while len(list_num ) < 4:
+        list_num.append([1])
+
+    x = 0
+    while x < 1.001:
+        res = (calcul(list_num[0], x)/calcul(list_num[1], x)) * (calcul(list_num[2], x) / calcul(list_num[3],x))
+        print (f'{x:.3f} -> {res:.5f}')
+        x = x + 0.001
+
+def main():
+    if '-h' in argv:
+        help()
+        exit (0)
+    error()
+    transfer()
+main()

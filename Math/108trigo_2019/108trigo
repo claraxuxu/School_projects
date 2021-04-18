@@ -1,0 +1,165 @@
+#!/usr/bin/env python3
+##
+## EPITECH PROJECT, 2019
+## 108trigo
+## File description:
+## 108trigo
+##
+
+from sys import exit, argv 
+from math import *
+
+def error():
+    if argv[1] not in ["EXP", "COS", "SIN", "COSH", "SINH"]:
+        exit (84)
+    try:
+        for i in range(2, len(argv)):
+            argv[i] = float(argv[i])
+    except: exit (84)
+
+def help():
+    print("USAGE\n\t\t./108trigo fun a0 a1 a2....\n\n"
+          "DESCRIPTION\n\t\tfun\tfunction to be applied, "
+          "among at least \"EXP\", \"COS\", \"SIN\", \"COSH\" and \"SINH\"\n"
+          "\t\tai\tcoeficients of the matrix")
+    exit(0)
+
+def init():
+    lenth = len(argv) - 2
+    if (lenth != 4 and lenth != 9 and lenth != 16 and lenth != 25 and lenth != 36): exit (84)
+    lenth = trunc(sqrt(lenth))
+    return (lenth)
+
+def prepare_list(lenth):
+    res = [[0] * lenth for i in range (lenth)]
+    for i in range (lenth):
+        for j in range (lenth):
+            if (i == j):
+                res[i][j] = 1
+            else: res[i][j] = 0
+    return (res)
+
+def add_list(mat1, mat2):
+    res = [[m + n for m,n in zip(i,j)] for i, j in zip(mat1,mat2)]
+    return (res)
+
+def sub_list(mat1, mat2):
+    res = [[m - n for m,n in zip(i,j)] for i, j in zip(mat1,mat2)]
+    return (res)
+
+def divide_list(list1, k):
+    for i in range (len(list1)):
+        for j in range (len(list1[0])):
+            list1[i][j] /= k
+    return (list1)
+
+def progress(list2, list1):
+    res = [[0] * len(list1[0]) for i in range (len(list1))]
+    for i in range(len(list2[0])):
+        for j in range(len(list2[0])):
+            for x in range(len(list2[0])):
+                res[i][j] += list2[i][x] * list1[x][j]
+    return (res)
+
+def multi_list(list1, k):
+    res = list1
+    for i in range (k - 1):
+        res = progress(res, list1)
+    return (res)
+
+def exp_list(mat, lenth):
+    k = 1
+    elem = prepare_list(lenth)
+    for i in range (1, 100):
+        k = factorial(i)
+        list1 = multi_list(mat, i)
+        list1 = divide_list(list1, k)
+        elem = add_list(elem, list1)
+    return (elem)
+
+def cos_list(mat, lenth):
+    k = 1
+    elem = prepare_list(lenth)
+    for i in range (1, 80):
+        k = factorial(2 * i)
+        list1 = multi_list(mat, (2 * i))
+        list1 = divide_list(list1, k)
+        if (i % 2 == 0):
+            elem = add_list(elem, list1)
+        else: elem = sub_list(elem, list1)
+    return (elem)
+
+def sin_list(mat, lenth):
+    k = 1
+    elem = mat
+    for i in range (1, 80):
+        k = factorial(2 * i + 1)
+        list1 = multi_list(mat, (2 * i + 1))
+        list1 = divide_list(list1, k)
+        if (i % 2 == 0):
+            elem = add_list(elem, list1)
+        else: elem = sub_list(elem, list1)
+    return (elem)
+
+def cosh_list(mat, lenth):
+    k = 1
+    elem = prepare_list(lenth)
+    for i in range (1, 80):
+        k = factorial(2 * i)
+        list1 = multi_list(mat, (2 * i))
+        list1 = divide_list(list1, k)
+        elem = add_list(elem, list1)
+    return (elem)
+
+def sinh_list(mat, lenth):
+    k = 1
+    elem = mat
+    for i in range (1, 80):
+        k = factorial(2 * i + 1)
+        list1 = multi_list(mat, (2 * i + 1))
+        list1 = divide_list(list1, k)
+        elem = add_list(elem, list1)
+    return (elem)
+
+def put_res(mat):
+    for a in range(len(mat)):
+        for b in range (len(mat[a])):
+            if b != len(mat[a]) - 1:
+                print("%.2f\t" % mat[a][b], end="")
+            else: print("%.2f" % mat[a][b], end="")
+        print("\n",end="")
+
+def get_result(mat, lenth):
+    if (argv[1] == "EXP"):
+        mat = exp_list(mat, lenth)
+    elif (argv[1] == "COS"):
+        mat = cos_list(mat, lenth)
+    elif (argv[1] == "SIN"):
+        mat = sin_list(mat, lenth)
+    elif (argv[1] == "COSH"):
+        mat = cosh_list(mat, lenth)
+    elif (argv[1] == "SINH"):
+        mat = sinh_list(mat, lenth)
+    put_res(mat)
+
+def init_mat(mat, lenth):
+    for i in range (lenth):
+        mat.append([])
+        for j in range (lenth):
+            mat[i].append(argv[i * lenth + j + 2])
+    return (mat)
+
+def main():
+    if len(argv) < 2: exit (84)
+    if '-h' in argv[1]:
+        help()
+        exit (0)
+    error()
+    mat = []
+    lenth = init()
+    mat = init_mat(mat, lenth)
+    get_result(mat, lenth)
+    
+if __name__ == '__main__':
+    main()
+    exit(0)

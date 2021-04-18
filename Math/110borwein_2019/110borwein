@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+##
+## EPITECH PROJECT, 2020
+## 110borwein_2019
+## File description:
+## 110borwein
+##
+
+from sys import exit, argv
+from math import sin, pi
+
+def help():
+    print("USAGE\n    ./110borwein n\n\n",end="")
+    print("DESCRIPTION\n    n\tconstant defining the integral to be computed")
+    exit(0)
+
+def facto(x, val):
+    res = 1
+    index = -1
+    if (x != 0):
+        index += 1
+        while (index <= val):
+            res *= (sin(x / ((2 * index) + 1))) / (x / ((2 * index) + 1))
+            index += 1
+    return (res)
+
+def cont_simp(start, h):
+    result = 0
+    i = -1
+    while (i < 10000 - 1):
+        i += 1
+        result += facto(start, ((start + i * h)  + (h / 2)))
+    return (result)
+
+def diff(res):
+    reslt = (pi / 2) - res
+    if (reslt < 0):
+        reslt *= -1
+    return (reslt)
+
+def midpoint(start):
+    end = 5000
+    interval = 10000
+    res = 0
+    i = 1
+    while (i <= interval):
+        res += facto((((2 * i) - 1) / (2 * interval)) * end, start)
+        i += 1
+    res /= 2
+    print(f'Midpoint:\nI{start:.0f} = {res:.10f}')
+    print(f'diff = {diff(res):.10f}\n')
+
+def trap(start, n):
+    end = 5000
+    interval = 10000
+    res = 0
+    i = 1
+    while (i < interval):
+        res += 2 * facto(i / 2, n)
+        i += 1
+    res += facto(0, n) + facto(end, n)
+    res /= 4
+    print (f'Trapezoidal:\nI{start:.0f} = {res:.10f}')
+    print(f'diff = {diff(res):.10f}\n')
+
+def simpson(start, n):
+    end = 5000
+    interval = 10000
+    res = 0
+    i = 1
+    while (i < interval):
+        if (i % 2 == 0):
+            res += 2 * facto(i / 2, n)
+        else: res += 4 * facto(i / 2, n)
+        i += 1
+    res += facto(0, n) + facto(end, n)
+    res *= 1 / 6
+    print (f'Simpson:\nI{start:.0f} = {res:.10f}')
+    print(f'diff = {diff(res):.10f}')
+
+def gestion_error(argv):
+    if len(argv) != 2: exit (84)
+    try: a = int(argv[1])
+    except: exit (84)
+    if a < 0: exit (84)
+    return (a)
+
+def main():
+    if (len(argv) != 2): exit (84)
+    if '-h' in argv[1]:
+        help()
+    a = gestion_error(argv)
+    midpoint(a)
+    trap(float(argv[1]), a)
+    simpson(float(argv[1]), a)
+    
+if __name__ == '__main__':
+    main()
+    exit(0)
